@@ -54,20 +54,20 @@ You should see:
 Server running on http://localhost:8080
 
 ⚠️ Limitations:
-Not production ready
-No HTTPS
-No keep-alive connections
-Minimal HTTP parsing
-No error handling for malformed requests
-Single-threaded
+Not production ready,
+No HTTPS,
+No keep-alive connections,
+Minimal HTTP parsing,
+No error handling for malformed requests,
+Single-threaded,
 This project is intended for learning and experimentation.
 
 
 📚 Learning Resources:
-Linux epoll documentation
-Beej’s Guide to Network Programming
-Tsoding’s networking videos
-Node.js event loop internals
+Linux epoll documentation,
+Beej’s Guide to Network Programming,
+Tsoding’s networking videos,
+Node.js event loop internals,
 
 
 👨‍💻 Author:
