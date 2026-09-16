@@ -45,10 +45,24 @@ Linux OS (for epoll)
 GCC or Clang
 C++17 or later
 Compile
-g++ -std=c++17 server.cpp -o server
+Using CMake (recommended):
+```
+cmake -S . -B build
+cmake --build build
+```
+
+Or compile directly:
+```
+g++ -std=c++17 src/server.cpp -o server
+```
 
 ▶️ Run the Server
+./build/async_http_server
+
+Or, if you used the direct compiler command:
+```
 ./server
+```
 
 You should see:
 Server running on http://localhost:8080
