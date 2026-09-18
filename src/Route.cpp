@@ -17,6 +17,10 @@ void Route::remove_spaces(std::string &str) {
 }
 
 void Route::create(std::string path) {
- // remove_spaces(path);
+  remove_spaces(path);
   route_vec.push_back(path);
 }
+
+void Route::get(std::string& path) {}
+void Route::put(std::string& path) {}
+void Route::del(std::string& path) {}

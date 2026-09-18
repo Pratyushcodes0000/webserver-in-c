@@ -10,6 +10,9 @@
 class Route {
     public:
     void create(std::string path);
+    void get(std::string& path);
+    void put(std::string& path);
+    void del(std::string& path);
     private:
     void remove_spaces(std::string &path);
 };

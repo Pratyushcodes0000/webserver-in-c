@@ -1,0 +1,51 @@
+Phase 1 — HTTP foundation
+[x] TCP
+[x] non-blocking sockets
+[x] epoll
+[x] event loop
+[x] basic HTTP parsing
+[x] basic routing
+[x] JSON response
+
+→ [ ] HTTP request class
+→ [ ] HTTP response class
+→ [ ] status codes
+→ [ ] headers
+→ [ ] proper error responses
+Phase 2 — Real router
+→ [ ] GET/POST/PUT/DELETE
+→ [ ] path parameters
+→ [ ] query parameters
+→ [ ] route matching
+→ [ ] 404 / 405
+Phase 3 — Real async server
+→ [ ] connection state
+→ [ ] partial reads
+→ [ ] partial writes
+→ [ ] keep-alive
+→ [ ] connection timeout
+Phase 4 — Webserver features
+→ [ ] static files
+→ [ ] MIME types
+→ [ ] index.html
+→ [ ] directory handling
+→ [ ] path traversal protection
+Phase 5 — Systems engineering
+→ [ ] thread pool
+→ [ ] worker queue
+→ [ ] graceful shutdown
+→ [ ] signal handling
+→ [ ] logging
+→ [ ] configuration file
+Phase 6 — Performance
+→ [ ] benchmark
+→ [ ] profiling
+→ [ ] memory analysis
+→ [ ] load testing
+→ [ ] optimize
+Phase 7 — Advanced
+→ [ ] HTTPS/OpenSSL
+→ [ ] gzip/brotli
+→ [ ] chunked transfer encoding
+→ [ ] WebSocket
+→ [ ] HTTP/2

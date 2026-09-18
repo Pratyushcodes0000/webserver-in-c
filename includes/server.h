@@ -1,31 +1,40 @@
+#include "../includes/Route.h"
 #include <arpa/inet.h>
 #include <cstring>
+#include <exception>
 #include <fcntl.h>
+#include <fstream>
 #include <iostream>
+#include <sstream>
 #include <sys/epoll.h>
 #include <unistd.h>
-#include <fstream>
-#include <sstream>
-#include "../includes/Route.h"
+#include <unordered_map>
 
 using namespace std;
 
 constexpr int PORT = 8080;
 constexpr int MAX_EVENT = 100;
-const int BUFFER_SIZE = 5000;
-const int PATH_SIZE = 20;
-const int METHOD_SIZE = 10;
-const int VERSION_SIZE = 20;
+constexpr int BUFFER_SIZE = 5000;
 
+struct Connection {
+  std::vector<char> InputBuffer;
+  std::vector<char> OutputBuffer;
+};
 
+class Server {
+public:
+  std::unordered_map<int, Connection> connections;
+  void send_response(int fd);
+  int create_socket();
+  void Bind(int server_fd);
+  int create_epoll_instance(int server_fd);
+  void handle_new_client(int server_fd, int epoll_fd);
+  void parse_req_line(const std::string &buffer, std::string &path,
+                      std::string &method, std::string &version);
+  void route_matching(std::string &path);
+  void find_conenction(int fd);
 
-void set_nonblocking(int fd);
-int create_socket();
-void bind(int server_fd);
-int create_epoll_instance(int server_fd);
-void handle_new_client(int server_fd,int epoll_fd);
-void parse_req_line(char (&buffer)[BUFFER_SIZE], char (&path)[PATH_SIZE] , char (&method)[METHOD_SIZE] ,char (&version)[VERSION_SIZE]);
-void route_matching(char (&path)[20]);
-void send_response(int fd);
+  private:
+    void set_nonblocking(int fd);
 
-void string_to_carr(std::string path);
+};

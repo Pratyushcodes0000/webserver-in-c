@@ -73,29 +73,29 @@ CMakeFiles/async_http_server.dir/src/server.cpp.o: CMakeFiles/async_http_server.
 CMakeFiles/async_http_server.dir/src/server.cpp.o: /home/chowd/webserver/src/server.cpp
 CMakeFiles/async_http_server.dir/src/server.cpp.o: CMakeFiles/async_http_server.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/chowd/webserver/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/async_http_server.dir/src/server.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/async_http_server.dir/src/server.cpp.o -MF CMakeFiles/async_http_server.dir/src/server.cpp.o.d -o CMakeFiles/async_http_server.dir/src/server.cpp.o -c /home/chowd/webserver/src/server.cpp
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/async_http_server.dir/src/server.cpp.o -MF CMakeFiles/async_http_server.dir/src/server.cpp.o.d -o CMakeFiles/async_http_server.dir/src/server.cpp.o -c /home/chowd/webserver/src/server.cpp
 
 CMakeFiles/async_http_server.dir/src/server.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/async_http_server.dir/src/server.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/chowd/webserver/src/server.cpp > CMakeFiles/async_http_server.dir/src/server.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/chowd/webserver/src/server.cpp > CMakeFiles/async_http_server.dir/src/server.cpp.i
 
 CMakeFiles/async_http_server.dir/src/server.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/async_http_server.dir/src/server.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/chowd/webserver/src/server.cpp -o CMakeFiles/async_http_server.dir/src/server.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/chowd/webserver/src/server.cpp -o CMakeFiles/async_http_server.dir/src/server.cpp.s
 
 CMakeFiles/async_http_server.dir/src/Route.cpp.o: CMakeFiles/async_http_server.dir/flags.make
 CMakeFiles/async_http_server.dir/src/Route.cpp.o: /home/chowd/webserver/src/Route.cpp
 CMakeFiles/async_http_server.dir/src/Route.cpp.o: CMakeFiles/async_http_server.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/chowd/webserver/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/async_http_server.dir/src/Route.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/async_http_server.dir/src/Route.cpp.o -MF CMakeFiles/async_http_server.dir/src/Route.cpp.o.d -o CMakeFiles/async_http_server.dir/src/Route.cpp.o -c /home/chowd/webserver/src/Route.cpp
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/async_http_server.dir/src/Route.cpp.o -MF CMakeFiles/async_http_server.dir/src/Route.cpp.o.d -o CMakeFiles/async_http_server.dir/src/Route.cpp.o -c /home/chowd/webserver/src/Route.cpp
 
 CMakeFiles/async_http_server.dir/src/Route.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/async_http_server.dir/src/Route.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/chowd/webserver/src/Route.cpp > CMakeFiles/async_http_server.dir/src/Route.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/chowd/webserver/src/Route.cpp > CMakeFiles/async_http_server.dir/src/Route.cpp.i
 
 CMakeFiles/async_http_server.dir/src/Route.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/async_http_server.dir/src/Route.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/chowd/webserver/src/Route.cpp -o CMakeFiles/async_http_server.dir/src/Route.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/chowd/webserver/src/Route.cpp -o CMakeFiles/async_http_server.dir/src/Route.cpp.s
 
 # Object files for target async_http_server
 async_http_server_OBJECTS = \

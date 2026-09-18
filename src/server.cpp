@@ -1,22 +1,21 @@
 #include "../includes/server.h"
-#include <exception>
-#include <iostream>
 
 std::string body;
 std::string type = "type/plain";
+Server server;
 
-void set_nonblocking(int fd) {
+void Server::set_nonblocking(int fd) {
   int flags = fcntl(fd, F_GETFL, 0);
   fcntl(fd, F_SETFL, flags | O_NONBLOCK);
 }
 
-int create_socket() {
+int Server::create_socket() {
   int server_fd = socket(AF_INET, SOCK_STREAM, 0);
   set_nonblocking(server_fd);
   return server_fd;
 }
 
-void bind(int server_fd) {
+void Server::Bind(int server_fd) {
   // binding Ip and port
   sockaddr_in address{};
   address.sin_family = AF_INET;
@@ -32,7 +31,7 @@ void bind(int server_fd) {
   }
 }
 
-int create_epoll_instance(int server_fd) {
+int Server::create_epoll_instance(int server_fd) {
   int epoll_fd = epoll_create1(0);
 
   epoll_event ev{};
@@ -44,7 +43,7 @@ int create_epoll_instance(int server_fd) {
   return epoll_fd;
 }
 
-void handle_new_client(int server_fd, int epoll_fd) {
+void Server::handle_new_client(int server_fd, int epoll_fd) {
 
   int client_fd = accept(server_fd, nullptr, nullptr);
   set_nonblocking(client_fd);
@@ -54,23 +53,20 @@ void handle_new_client(int server_fd, int epoll_fd) {
   client_ev.events = EPOLLIN;
 
   epoll_ctl(epoll_fd, EPOLL_CTL_ADD, client_fd, &client_ev);
+
+  server.connections[client_fd];
 }
 
-void parse_req_line(
-    const std::string& buffer,
-    std::string& path,
-    std::string& method,
-    std::string& version
-) {
-    std::istringstream iss(buffer);
-    iss >> method >> path >> version;
+void Server::parse_req_line(const std::string &buffer, std::string &path,
+                            std::string &method, std::string &version) {
+  std::istringstream iss(buffer);
+  iss >> method >> path >> version;
+}
 
-} 
-
-void route_matching(std::string &path) {
+void Server::route_matching(std::string &path) {
   // route
   for (const auto &vec_path : route_vec) {
-     if (path == vec_path ) {
+    if (path == vec_path) {
       body = "{ \"status\": \"ok\" }";
       type = "application/json";
     } else {
@@ -79,35 +75,47 @@ void route_matching(std::string &path) {
   }
 }
 
-void send_response(int fd)
-{
-    std::string response =
-        "HTTP/1.1 200 OK\r\n"
-        "Content-Type: " + type + "\r\n"
-        "Content-Length: " + std::to_string(body.size()) + "\r\n"
-        "\r\n" +
-        body;
+// void Server::find_conenction(int fd){
+//   for (auto& [connection_fd,connection] : server.connections){
+//         if(fd == connection_fd){
 
-    send(fd, response.data(), response.size(), 0);
+//         }
+//   }
+// }
 
-    close(fd);
+void Server::send_response(int fd) {
+  std::string response = "HTTP/1.1 200 OK\r\n"
+                         "Content-Type: " +
+                         type +
+                         "\r\n"
+                         "Content-Length: " +
+                         std::to_string(body.size()) +
+                         "\r\n"
+                         "\r\n" +
+                         body;
+
+  send(fd, response.data(), response.size(), 0);
+
+  close(fd);
 }
 
 int main() {
+  Connection connection;
   Route route;
+
   route.create("/api/health");
-  route.create("/api/get");
+
   // create socket
-  int server_fd = create_socket();
+  int server_fd = server.create_socket();
 
   // bind
-  bind(server_fd);
+  server.Bind(server_fd);
   listen(server_fd, SOMAXCONN);
 
   cout << "Server running on http://localhost:8080\n";
 
   // creating epoll instance
-  int epoll_fd = create_epoll_instance(server_fd);
+  int epoll_fd = server.create_epoll_instance(server_fd);
 
   // epoll buffer
   epoll_event events[MAX_EVENT];
@@ -119,14 +127,11 @@ int main() {
       int fd = events[i].data.fd;
 
       if (fd == server_fd) {
-        handle_new_client(server_fd, epoll_fd);
+        server.handle_new_client(server_fd, epoll_fd);
       } else {
+        int byte = read(fd, server.connections[fd].InputBuffer.data(), sizeof(server.connections[fd].InputBuffer) - 1);
 
-        std::vector<char> buffer(BUFFER_SIZE);
-
-        int byte = read(fd, buffer.data(), sizeof(buffer) - 1);
-
-        std::string request(buffer.data(), byte);
+        std::string request(server.connections[fd].InputBuffer.data(), byte);
 
         if (byte <= 0) {
           close(fd);
@@ -134,20 +139,19 @@ int main() {
         }
 
         // insert a newline(bute > 0)
-        buffer[byte] = '\0';
         // std::cout << buffer << std::endl;
 
         std::string path;
         std::string method;
         std::string version;
-        parse_req_line(request, path, method, version);
+        server.parse_req_line(request, path, method, version);
 
         // route here
-        route_matching(path);
+        server.route_matching(path);
 
         // send response here
         // response goes after matching routes
-        send_response(fd);
+        server.send_response(fd);
       }
     }
   }

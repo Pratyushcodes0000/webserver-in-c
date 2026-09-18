@@ -1,0 +1,14 @@
+[
+{
+  "directory": "/home/chowd/webserver/build",
+  "command": "/usr/bin/g++  -I/home/chowd/webserver/includes -g -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/async_http_server.dir/src/server.cpp.o -c /home/chowd/webserver/src/server.cpp",
+  "file": "/home/chowd/webserver/src/server.cpp",
+  "output": "CMakeFiles/async_http_server.dir/src/server.cpp.o"
+},
+{
+  "directory": "/home/chowd/webserver/build",
+  "command": "/usr/bin/g++  -I/home/chowd/webserver/includes -g -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/async_http_server.dir/src/Route.cpp.o -c /home/chowd/webserver/src/Route.cpp",
+  "file": "/home/chowd/webserver/src/Route.cpp",
+  "output": "CMakeFiles/async_http_server.dir/src/Route.cpp.o"
+}
+]
